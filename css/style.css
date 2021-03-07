@@ -1,0 +1,50 @@
+body {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+#nav-main {
+    background-color: rgb(255, 210, 180) !important;
+    height: 50px;
+    font-size: 14px;
+}
+
+#nav-secondary {
+    width: 200px;
+    background-color: rgb(16, 71, 78);
+    height: 100vh;
+}
+
+#nav-secondary-head {
+    height: 50px;
+    background-color: rgb(22, 90, 99);
+}
+#nav-secondary-body {
+    margin: 20px auto;
+}
+
+i {
+    color: rgb(187, 187, 187);
+    font-size: 14px;
+}
+
+.nav-secondary-item>a {
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.nav-secondary-item:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.nav-secondary-item {
+    width: 85%;
+    margin: 0 auto;
+    padding: 1px 15px;
+    background-color: rgb(38, 109, 190);
+    border-radius: 2px;
+}
+
+.nav-secondary-item:hover {
+    background-color: rgb(121, 134, 190);
+    cursor: pointer;
+}
