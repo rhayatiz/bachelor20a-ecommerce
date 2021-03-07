@@ -1,2 +1,1 @@
-# bachelor20a-students-portal
-Portail étudiants/professeurs 
+# bachelor20a-ecommerce
