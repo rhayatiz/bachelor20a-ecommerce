@@ -11,20 +11,20 @@
         <div id="nav-secondary-body">
             <div class="nav-secondary-item">
                 <i class="far fa-calendar-alt"></i>
-                <a href="index.php?page=categories" class="no-deco">Catégories</a>
+                <a href="index.php?page=categories" class="text-white">Catégories</a>
             </div>
 
             
             <div class="nav-secondary-item" >
                 <i class="far fa-list-alt"></i>
-                <a href="index.php?page=produits" class="no-deco">Produits</a>
+                <a href="index.php?page=produits" class="text-white">Produits</a>
             </div>
 
             <hr class="bg-muted">
             
             <div class="nav-secondary-item">
                 <i class="fas fa-shopping-cart"></i>
-                <a>Commandes</a>
+                <a href="index.php?page=orders" class="text-white">Commandes</a>
             </div>
         </div>
     </nav>

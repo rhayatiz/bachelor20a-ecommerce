@@ -2,6 +2,7 @@
 require_once('Controller.php');
 require_once(ROOT_FOLDER.'/DAO/ProduitDao.php');
 require_once(ROOT_FOLDER.'/DAO/CategorieDao.php');
+require_once(ROOT_FOLDER.'/DAO/OrderDao.php');
 
 class PanierController extends Controller{
 
@@ -46,4 +47,54 @@ class PanierController extends Controller{
         $this->index();
     }
 
+    public function payement(){
+        $categories = (new CategorieDao())->list();
+        $page_title = "Paiement";
+        $panier = $_SESSION['panier'];
+        
+        $this->render('paiement', compact('page_title','categories', 'panier'));
+    }
+
+    public function payementConfirm(){
+        $produitDao = new ProduitDao();
+        $categories = (new CategorieDao())->list();
+        $page_title = "Paiement effectué";
+        $panier = $_SESSION['panier'];
+        $total = 0;
+        $relation = array();
+        foreach($panier as $produit){
+            $total += $produit['quantite'] * $produit['prix'];
+            $produitDao->updateStock($produit['id'], $produit['stock']);
+        }
+        //REDUIRE LE STOCK DU PRODUIT
+        //CREATE ORDER
+        $order['nom'] = $_POST['nom'];
+        $order['prenom'] = $_POST['prenom'];
+        $order['adresse'] = $_POST['adresse'];
+        $order['mail'] = $_POST['mail'];
+        $order['card'] = $_POST['carteBancaire'];
+        $order['total'] = $total;
+        $order['number'] = time();
+        $orderDao = new OrderDao();
+        $orderId = $orderDao->create($order);
+        $order = $orderDao->get($orderId);
+
+        unset($_SESSION['panier']);
+        $this->render('paiement', compact('page_title','categories', 'panier', 'order'));
+    }
+
+    public function orders(){
+        $orderDao = new OrderDao();
+        $categories = (new CategorieDao())->list();
+        $page_title = "Commandes";
+        $orders = $orderDao->list();
+
+
+        foreach($orders as $order){
+            $order->products = $orderDao->getOrderProducts($order->id);
+        }
+
+        $this->render('dashboard.orders', compact('page_title','categories', 'orders'));
+
+    }
 }

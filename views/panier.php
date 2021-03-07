@@ -70,7 +70,7 @@
             <!-- Quantité -->
             <td class="text-right">
                 <select onchange="changeQte(<?= $produit['id'] ?>, this)" class="form-select" aria-label="Quantité">
-                    <?php for ($i=1; $i < $produit['stock']; $i++) { 
+                    <?php for ($i=1; $i <= $produit['stock']; $i++) { 
                         $selected = $i == $produit['quantite'] ?  'selected' : '';
                         echo "<option $selected value='$i'>$i</option>";
                     }?>
@@ -93,7 +93,7 @@
 
 <div class="row my-5">
       <div class="col">
-          <a class="float-right btn btn-sm btn-success">Paiement</a>
+          <a href="index.php?page=paiement" class="float-right btn btn-sm btn-success">Paiement</a>
       </div>
 </div>
 

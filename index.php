@@ -7,10 +7,7 @@ function dd($a){
     echo "</pre>";
     die();
 }
-
-echo "<pre class='mt-5'>";
-print_r($_SESSION);
-echo "</pre>";
+dd($_SESSION['panier']);
 /**
  * ROUTER 
  */
@@ -19,6 +16,7 @@ require('./Controllers/HomeController.php');
 require('./Controllers/ProduitController.php');
 require('./Controllers/CategorieController.php');
 require('./Controllers/PanierController.php');
+
 
 if (isset($_GET['page'])){
     $page = $_GET['page'];
@@ -67,8 +65,15 @@ if (isset($_GET['page'])){
         }else{
             (new PanierController())->index();
         }
-
-
+    /*************************************PAIEMENT **********************/
+    }else if($page == "paiement"){
+        if (isset($_POST['paiementConfirm'])){            
+            (new PanierController())->payementConfirm();
+        }else{
+            (new PanierController())->payement();
+        }
+    }else if($page == "orders"){
+        (new PanierController)->orders();
     }else if($page == "clearSession"){
         session_unset();
         header('Location: index.php');

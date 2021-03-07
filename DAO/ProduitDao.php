@@ -102,5 +102,14 @@ class ProduitDao
         }
 	}
 
+    function updateStock($id, $stock){
+        $sql = 'UPDATE produits SET `stock` = ? WHERE id = ?';
+        $stm = self::$pdo->prepare($sql);
+        $args = array(
+            $stock,
+            $id
+        );
+        $stm->execute($args);
+    }
 
 }
