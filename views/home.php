@@ -38,9 +38,9 @@
                 </a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
             <a href="index.php?page=clearSession">clearSession</a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>

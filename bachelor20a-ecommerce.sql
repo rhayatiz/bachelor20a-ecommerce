@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : Dim 07 mars 2021 à 15:22
+-- Généré le : Dim 07 mars 2021 à 19:51
 -- Version du serveur :  10.4.13-MariaDB
 -- Version de PHP : 7.4.7
 
@@ -47,6 +47,58 @@ INSERT INTO `categories` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `number` int(50) NOT NULL,
+  `prenom` varchar(128) NOT NULL,
+  `nom` varchar(128) NOT NULL,
+  `adresse` varchar(128) NOT NULL,
+  `mail` varchar(128) NOT NULL,
+  `card` varchar(128) NOT NULL,
+  `total` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `orders`
+--
+
+INSERT INTO `orders` (`id`, `number`, `prenom`, `nom`, `adresse`, `mail`, `card`, `total`) VALUES
+(12, 1615137583, 'rhayati', 'zakaria', 'adresse', 'rhayatiz@mail', '1231 2312 3212 1233', 203.96),
+(13, 1615140186, 'zakaria', 'rhayati', '123', 'a@c', '1231 3212 3311 3212', 50.99),
+(14, 1615141078, 'a', 'aa', 'a', 'a', '9999 9999 9999 9999', 254.95),
+(15, 1615141394, 'a', 'a', 'a', 'a', '1231 2312 3123 1221', 50.99),
+(16, 1615141693, 'a', 'a', 'aa', 'a', '1222 2222 2222 2222', 203.96);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `orders_produits`
+--
+
+CREATE TABLE `orders_produits` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `produit_id` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `orders_produits`
+--
+
+INSERT INTO `orders_produits` (`id`, `order_id`, `produit_id`, `quantite`) VALUES
+(1, 12, 11, 4),
+(2, 13, 11, 1),
+(3, 14, 6, 5),
+(4, 15, 6, 1),
+(5, 16, 6, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `produits`
 --
 
@@ -65,8 +117,8 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`id`, `libelle`, `description`, `stock`, `img`, `prix`, `categorie_id`) VALUES
-(6, 'Casquette polo noir', 'Casquette type bob polo noir', 5, '1615076981polohat.png', 50.99, NULL),
-(11, 'TSHIRT Lacoste ROUGE', 'description', 13, '1615122090lacoste_rouge.png', 50.99, 1);
+(6, 'Casquette polo noir', 'Casquette type bob polo noir', 10, '1615076981polohat.png', 50.99, NULL),
+(11, 'TSHIRT Lacoste ROUGE', 'descriptione', 13, '1615122090lacoste_rouge.png', 50.99, 1);
 
 -- --------------------------------------------------------
 
@@ -102,6 +154,20 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `orders_produits`
+--
+ALTER TABLE `orders_produits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_produit_id` (`produit_id`),
+  ADD KEY `fk_order_id` (`order_id`);
+
+--
 -- Index pour la table `produits`
 --
 ALTER TABLE `produits`
@@ -125,6 +191,18 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT pour la table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `orders_produits`
+--
+ALTER TABLE `orders_produits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
@@ -139,6 +217,13 @@ ALTER TABLE `users`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `orders_produits`
+--
+ALTER TABLE `orders_produits`
+  ADD CONSTRAINT `fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `fk_produit_id` FOREIGN KEY (`produit_id`) REFERENCES `produits` (`id`);
 
 --
 -- Contraintes pour la table `produits`

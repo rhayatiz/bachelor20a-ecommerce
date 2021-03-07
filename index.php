@@ -1,5 +1,5 @@
 <?php
-define('ROOT_FOLDER', "C:\\xampp\\htdocs\\bachelor20a-ecommerce\\");
+define('ROOT_FOLDER', "C:\\xampp\\htdocs\\bachelor20a-portail-etudiant\\");
 if(!isset($_SESSION)){session_start();}
 function dd($a){
     echo "<pre>";
@@ -7,7 +7,6 @@ function dd($a){
     echo "</pre>";
     die();
 }
-dd($_SESSION['panier']);
 /**
  * ROUTER 
  */
