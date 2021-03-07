@@ -74,5 +74,28 @@ class ProduitController extends Controller{
         header('Location: index.php?page=produits');
     }
 
+    public function update(){
+        if (isset($_POST['produitModifier']))
+        {
+            $id = $_POST['id'];           
+            $libelle = $_POST['libelle'];
+            $stock = $_POST['stock'];
+            $description = $_POST['description'];
+            $prix = $_POST['prix'];
+            $categorie = $_POST['categorie'];
+            (new ProduitDao())->update($id, $libelle, $description, $stock, $prix, $categorie);
+            header('Location: index.php?page=produits');
+        }   
+
+        else
+        {
+            $id = $_GET['id'];
+            $produit = (new ProduitDAO())->get($id);
+            $categories = (new CategorieDao())->list();
+            $page_title = "Modifier produit";
+            $this->render('dashboard.produit.modifier', compact('page_title','categories','produit'));
+            
+        }
+    }
 
 }
