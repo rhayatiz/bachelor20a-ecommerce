@@ -1,5 +1,5 @@
 <?php
-define('ROOT_FOLDER', "C:\\xampp\\htdocs\\bachelor20a-portail-etudiant\\");
+define('ROOT_FOLDER', "C:\\xampp\\htdocs\\bachelor20a-ecommerce\\");
 if(!isset($_SESSION)){session_start();}
 function dd($a){
     echo "<pre>";
@@ -41,6 +41,8 @@ if (isset($_GET['page'])){
         (new ProduitController())->index();
     }else if($page == "produitAjouter"){
         (new ProduitController())->add();
+    }else if($page == "produitModifier"){
+        (new ProduitController())->update();
     }else if($page == "produitSupprimer"){
         (new ProduitController())->delete();
     /****************************************CATEGORIES*****************/
@@ -50,6 +52,8 @@ if (isset($_GET['page'])){
         (new CategorieController())->index();
     }else if($page == "categorieAjouter"){
         (new CategorieController())->add();
+    }else if($page == "categorieModifier"){
+        (new CategorieController())->update();
     }else if($page == "categorieSupprimer"){
         (new CategorieController())->delete();
     /*************************************PANIER **********************/

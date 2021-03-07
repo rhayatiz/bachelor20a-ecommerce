@@ -58,18 +58,14 @@ class CategorieDao
             return self::$pdo->lastInsertId();
         }
 	}
-/*
-	function update($user){
-        $sql = 'UPDATE produits SET (nom, prenom, date_naissance, email, password) VALUES(?,?,?,?,?) WHERE id = ?';
+
+    function update($id,$libelle){
+        $sql = 'UPDATE categories SET libelle=? WHERE id = ?';
         $stm = self::$pdo->prepare($sql);
         
         $args = array(
-            $user->getNom(),
-            $user->getPrenom(),
-            $user->getEmail(),
-            $user->getDateNaissance(),
-             md5($user->getPassword()),
-            $user->id
+            $libelle,
+            $id
         );
         $stm->execute($args);
         
@@ -77,7 +73,6 @@ class CategorieDao
             return self::$pdo->lastInsertId();
         }
 	}
-    */
 
 	function delete($id){
         $sql = 'DELETE FROM categories WHERE id = ?';

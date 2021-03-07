@@ -72,18 +72,18 @@ class ProduitDao
             return self::$pdo->lastInsertId();
         }
 	}
-/*
-	function update($user){
-        $sql = 'UPDATE produits SET (nom, prenom, date_naissance, email, password) VALUES(?,?,?,?,?) WHERE id = ?';
+
+	function update($id,$libelle,$description,$stock,$prix,$categorie){
+        $sql = 'UPDATE produits SET libelle=?, description=?, stock=?, prix=?, categorie_id=? WHERE id = ?';
         $stm = self::$pdo->prepare($sql);
         
         $args = array(
-            $user->getNom(),
-            $user->getPrenom(),
-            $user->getEmail(),
-            $user->getDateNaissance(),
-             md5($user->getPassword()),
-            $user->id
+            $libelle,
+            $description,
+            $stock,
+            $prix,
+            $categorie,
+            $id
         );
         $stm->execute($args);
         
@@ -91,7 +91,6 @@ class ProduitDao
             return self::$pdo->lastInsertId();
         }
 	}
-    */
 
 	function delete($id){
         $sql = 'DELETE FROM produits WHERE id = ?';

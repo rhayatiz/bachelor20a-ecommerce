@@ -27,5 +27,23 @@ class CategorieController extends Controller{
         (new CategorieDao())->delete($id);
         header('Location: index.php?page=categories');
     }
+    public function update(){
+        if (isset($_POST['categorieModifier']))
+        {
+            $id = $_POST['id'];           
+            $libelle = $_POST['libelle'];
+            (new CategorieDao())->update($id, $libelle);
+            header('Location: index.php?page=categories');
+        }   
+
+        else
+        {
+            $id = $_GET['id'];
+            $categorie = (new CategorieDao())->get($id);
+            $page_title = "Modifier Categorie";
+            $this->render('dashboard.categorie.modifier', compact('page_title','categorie'));
+            
+        }
+    }
 
 }
