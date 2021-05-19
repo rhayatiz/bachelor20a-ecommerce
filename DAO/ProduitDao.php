@@ -8,27 +8,8 @@ class ProduitDao
 {
 	static $pdo=null;
 
-	const DATABASE_HOST = 'localhost';
-	const DATABASE_USER = 'root';
-	const DATABASE_PASS = '';
-	const DATABASE_NAME = 'bachelor20a-ecommerce';
-
 	function __construct(){
-		if(ProduitDao::$pdo==null){
-			$this->createPDO();
-		}
-	}
-
-	private function createPDO(){
-		try{  
-			ProduitDao::$pdo = new PDO('mysql:host=' . ProduitDao::DATABASE_HOST . ';dbname=' . ProduitDao::DATABASE_NAME . ';charset=utf8', ProduitDao::DATABASE_USER, ProduitDao::DATABASE_PASS);
-
-			ProduitDao::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		  	//echo 'PDO créé : Connection OK!';
-		}
-		catch(PDOException $e){
-		   die('Erreur : ' . $e->getMessage());
-		}
+        ProduitDao::$pdo = DatabasePDO::getInstance();
 	}
 
 	function list(){//1 - Lire Données

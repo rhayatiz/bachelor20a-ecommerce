@@ -8,27 +8,8 @@ class OrderDao
 {
 	static $pdo=null;
 
-	const DATABASE_HOST = 'localhost';
-	const DATABASE_USER = 'root';
-	const DATABASE_PASS = '';
-	const DATABASE_NAME = 'bachelor20a-ecommerce';
-
 	function __construct(){
-		if(OrderDao::$pdo==null){
-			$this->createPDO();
-		}
-	}
-
-	private function createPDO(){
-		try{  
-			OrderDao::$pdo = new PDO('mysql:host=' . OrderDao::DATABASE_HOST . ';dbname=' . OrderDao::DATABASE_NAME . ';charset=utf8', OrderDao::DATABASE_USER, OrderDao::DATABASE_PASS);
-
-			OrderDao::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		  	//echo 'PDO créé : Connection OK!';
-		}
-		catch(PDOException $e){
-		   die('Erreur : ' . $e->getMessage());
-		}
+        OrderDao::$pdo = DatabasePDO::getInstance();
 	}
 
 	function list(){//1 - Lire Données

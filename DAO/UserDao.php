@@ -8,27 +8,8 @@ class UserDao
 {
 	static $pdo=null;
 
-	const DATABASE_HOST = 'localhost';
-	const DATABASE_USER = 'root';
-	const DATABASE_PASS = '';
-	const DATABASE_NAME = 'bachelor20a-ecommerce';
-
 	function __construct(){
-		if(UserDao::$pdo==null){
-			$this->createPDO();
-		}
-	}
-
-	private function createPDO(){
-		try{  
-			UserDao::$pdo = new PDO('mysql:host=' . UserDao::DATABASE_HOST . ';dbname=' . UserDao::DATABASE_NAME . ';charset=utf8', UserDao::DATABASE_USER, UserDao::DATABASE_PASS);
-
-			UserDao::$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		  	//echo 'PDO créé : Connection OK!';
-		}
-		catch(PDOException $e){
-		   die('Erreur : ' . $e->getMessage());
-		}
+        UserDao::$pdo = DatabasePDO::getInstance();
 	}
 
 	function list(){//1 - Lire Données

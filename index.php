@@ -1,5 +1,5 @@
 <?php
-define('ROOT_FOLDER', __DIR__ . "\\");
+define('ROOT_FOLDER', __DIR__ . DIRECTORY_SEPARATOR );
 if(!isset($_SESSION)){session_start();}
 function dd($a){
     echo "<pre>";
@@ -15,6 +15,7 @@ require('./Controllers/HomeController.php');
 require('./Controllers/ProduitController.php');
 require('./Controllers/CategorieController.php');
 require('./Controllers/PanierController.php');
+include(ROOT_FOLDER.'DAO/DatabasePDO.php');
 
 
 if (isset($_GET['page'])){
