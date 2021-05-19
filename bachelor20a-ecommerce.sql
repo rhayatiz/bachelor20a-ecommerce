@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : Dim 07 mars 2021 à 19:51
+-- Généré le : mer. 19 mai 2021 à 11:29
 -- Version du serveur :  10.4.13-MariaDB
 -- Version de PHP : 7.4.7
 
@@ -38,11 +38,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `libelle`) VALUES
 (1, 'Tshirt'),
-(2, 'Shorts'),
-(3, 'Pantalons'),
-(4, 'Accessoires'),
 (5, 'Casquettes'),
-(7, 'Libelle');
+(8, 'Libelletes');
 
 -- --------------------------------------------------------
 
@@ -70,7 +67,13 @@ INSERT INTO `orders` (`id`, `number`, `prenom`, `nom`, `adresse`, `mail`, `card`
 (13, 1615140186, 'zakaria', 'rhayati', '123', 'a@c', '1231 3212 3311 3212', 50.99),
 (14, 1615141078, 'a', 'aa', 'a', 'a', '9999 9999 9999 9999', 254.95),
 (15, 1615141394, 'a', 'a', 'a', 'a', '1231 2312 3123 1221', 50.99),
-(16, 1615141693, 'a', 'a', 'aa', 'a', '1222 2222 2222 2222', 203.96);
+(16, 1615141693, 'a', 'a', 'aa', 'a', '1222 2222 2222 2222', 203.96),
+(17, 1615143310, 'za', 'za', 'za', 'za', '1231 2312 3131 2333', 305.94),
+(18, 1615143389, 'a', 'a', 'a', 'a', '2222 2222 2222 2222', 509.9),
+(19, 1615143450, 'a', 'a', 'a', 'a', '2222 2222 2222 2222', 0),
+(20, 1615143474, 'a', 'a', 'a', 'a', '2333 3232 3223 2323', 356.93),
+(21, 1615144346, 'a', 'a', 'a', 'a', '3333 3333 3333 3333', 1274.75),
+(22, 1617980431, 'zaki', 'miyazaki', 'nullepar', 'zakimayki@yopmail.com', '1230 9231 9899 3828', 1000410);
 
 -- --------------------------------------------------------
 
@@ -94,7 +97,13 @@ INSERT INTO `orders_produits` (`id`, `order_id`, `produit_id`, `quantite`) VALUE
 (2, 13, 11, 1),
 (3, 14, 6, 5),
 (4, 15, 6, 1),
-(5, 16, 6, 4);
+(5, 16, 6, 4),
+(6, 17, 11, 6),
+(7, 18, 6, 10),
+(8, 20, 6, 7),
+(9, 21, 11, 25),
+(10, 22, 13, 1),
+(11, 22, 6, 8);
 
 -- --------------------------------------------------------
 
@@ -117,8 +126,9 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`id`, `libelle`, `description`, `stock`, `img`, `prix`, `categorie_id`) VALUES
-(6, 'Casquette polo noir', 'Casquette type bob polo noir', 10, '1615076981polohat.png', 50.99, NULL),
-(11, 'TSHIRT Lacoste ROUGE', 'descriptione', 13, '1615122090lacoste_rouge.png', 50.99, 1);
+(6, 'Casquette polo noir', 'Casquette type bob polo noir', 5, '1615076981polohat.png', 50.99, 1),
+(11, 'TSHIRT Lacoste ROUGE', 'Tshirt rouge 100% cotton', 23, '1615122090lacoste_rouge.png', 50.99, 1),
+(13, 'Doge T-shirt', 'Wow  so rare', 2, '1615074033doge_shirt.png', 199.99, 1);
 
 -- --------------------------------------------------------
 
@@ -188,25 +198,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `orders_produits`
 --
 ALTER TABLE `orders_produits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `users`
