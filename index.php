@@ -1,5 +1,5 @@
 <?php
-define('ROOT_FOLDER', "C:\\xampp\\htdocs\\bachelor20a-portail-etudiant\\");
+define('ROOT_FOLDER', __DIR__ . "\\");
 if(!isset($_SESSION)){session_start();}
 function dd($a){
     echo "<pre>";
