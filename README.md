@@ -5,7 +5,7 @@ Site E-commerce en MVC
 ***
 
 
-### Installation : You don't have Docker
+### Installation
 
 #### Requirements
 - PHP, MySQL, Apache (or xampp)
